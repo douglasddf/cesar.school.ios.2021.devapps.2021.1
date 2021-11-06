@@ -14,6 +14,8 @@
 		EDAF97D22735FD4E008CC1A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAF97D12735FD4E008CC1A1 /* Assets.xcassets */; };
 		EDAF97D52735FD4E008CC1A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAF97D32735FD4E008CC1A1 /* LaunchScreen.storyboard */; };
 		EDAF97DD273607CA008CC1A1 /* Tela2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF97DC273607CA008CC1A1 /* Tela2ViewController.swift */; };
+		EDDDDE072736ADAD001FCE5E /* Tela3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE062736ADAD001FCE5E /* Tela3ViewController.swift */; };
+		EDDDDE092736ADCA001FCE5E /* Tela4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE082736ADCA001FCE5E /* Tela4ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		EDAF97D42735FD4E008CC1A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDAF97D62735FD4E008CC1A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAF97DC273607CA008CC1A1 /* Tela2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tela2ViewController.swift; sourceTree = "<group>"; };
+		EDDDDE062736ADAD001FCE5E /* Tela3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tela3ViewController.swift; sourceTree = "<group>"; };
+		EDDDDE082736ADCA001FCE5E /* Tela4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tela4ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +64,40 @@
 			children = (
 				EDAF97C82735FD4B008CC1A1 /* AppDelegate.swift */,
 				EDAF97CA2735FD4B008CC1A1 /* SceneDelegate.swift */,
-				EDAF97CC2735FD4B008CC1A1 /* ViewController.swift */,
-				EDAF97CE2735FD4B008CC1A1 /* Main.storyboard */,
+				EDDDDE0C2736B830001FCE5E /* Models */,
+				EDDDDE0B2736B822001FCE5E /* Views */,
+				EDDDDE0A2736B812001FCE5E /* Controllers */,
 				EDAF97D12735FD4E008CC1A1 /* Assets.xcassets */,
-				EDAF97D32735FD4E008CC1A1 /* LaunchScreen.storyboard */,
 				EDAF97D62735FD4E008CC1A1 /* Info.plist */,
-				EDAF97DC273607CA008CC1A1 /* Tela2ViewController.swift */,
 			);
 			path = CicloDeVidaApp;
+			sourceTree = "<group>";
+		};
+		EDDDDE0A2736B812001FCE5E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EDAF97CC2735FD4B008CC1A1 /* ViewController.swift */,
+				EDAF97DC273607CA008CC1A1 /* Tela2ViewController.swift */,
+				EDDDDE062736ADAD001FCE5E /* Tela3ViewController.swift */,
+				EDDDDE082736ADCA001FCE5E /* Tela4ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EDDDDE0B2736B822001FCE5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDAF97CE2735FD4B008CC1A1 /* Main.storyboard */,
+				EDAF97D32735FD4E008CC1A1 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EDDDDE0C2736B830001FCE5E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +174,8 @@
 				EDAF97CD2735FD4B008CC1A1 /* ViewController.swift in Sources */,
 				EDAF97C92735FD4B008CC1A1 /* AppDelegate.swift in Sources */,
 				EDAF97CB2735FD4B008CC1A1 /* SceneDelegate.swift in Sources */,
+				EDDDDE092736ADCA001FCE5E /* Tela4ViewController.swift in Sources */,
+				EDDDDE072736ADAD001FCE5E /* Tela3ViewController.swift in Sources */,
 				EDAF97DD273607CA008CC1A1 /* Tela2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,8 +330,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,7 +343,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -325,8 +359,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -336,7 +372,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
