@@ -18,6 +18,7 @@
 		EDDDDE582736F569001FCE5E /* WorldCup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE572736F569001FCE5E /* WorldCup.swift */; };
 		EDDDDE5A2736F78E001FCE5E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE592736F78E001FCE5E /* Match.swift */; };
 		EDDDDE5C2736F7B1001FCE5E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE5B2736F7B1001FCE5E /* Game.swift */; };
+		EDFEB3F92737168D00CC4BAD /* WorldCupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFEB3F82737168D00CC4BAD /* WorldCupTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		EDDDDE572736F569001FCE5E /* WorldCup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCup.swift; sourceTree = "<group>"; };
 		EDDDDE592736F78E001FCE5E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		EDDDDE5B2736F7B1001FCE5E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		EDFEB3F82737168D00CC4BAD /* WorldCupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				EDDDDE532736F345001FCE5E /* WinnersTableViewController.swift */,
 				EDDDDE552736F3F0001FCE5E /* WorldCupViewController.swift */,
+				EDFEB3F82737168D00CC4BAD /* WorldCupTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDDDDE542736F345001FCE5E /* WinnersTableViewController.swift in Sources */,
+				EDFEB3F92737168D00CC4BAD /* WorldCupTableViewCell.swift in Sources */,
 				EDDDDE3A2736CDEA001FCE5E /* AppDelegate.swift in Sources */,
 				EDDDDE5C2736F7B1001FCE5E /* Game.swift in Sources */,
 				EDDDDE582736F569001FCE5E /* WorldCup.swift in Sources */,
