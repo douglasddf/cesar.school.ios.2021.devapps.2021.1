@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED473AEC27491A8B008E4D67 /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED473AEB27491A8B008E4D67 /* GamesTableViewCell.swift */; };
 		EDDDDE3A2736CDEA001FCE5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE392736CDEA001FCE5E /* AppDelegate.swift */; };
 		EDDDDE3C2736CDEA001FCE5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDDE3B2736CDEA001FCE5E /* SceneDelegate.swift */; };
 		EDDDDE412736CDEA001FCE5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDDDE3F2736CDEA001FCE5E /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED473AEB27491A8B008E4D67 /* GamesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
 		EDDDDE362736CDE9001FCE5E /* Campeoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Campeoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDDDE392736CDEA001FCE5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDDDE3B2736CDEA001FCE5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				EDDDDE532736F345001FCE5E /* WinnersTableViewController.swift */,
 				EDDDDE552736F3F0001FCE5E /* WorldCupViewController.swift */,
 				EDFEB3F82737168D00CC4BAD /* WorldCupTableViewCell.swift */,
+				ED473AEB27491A8B008E4D67 /* GamesTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDDDDE542736F345001FCE5E /* WinnersTableViewController.swift in Sources */,
+				ED473AEC27491A8B008E4D67 /* GamesTableViewCell.swift in Sources */,
 				EDFEB3F92737168D00CC4BAD /* WorldCupTableViewCell.swift in Sources */,
 				EDDDDE3A2736CDEA001FCE5E /* AppDelegate.swift in Sources */,
 				EDDDDE5C2736F7B1001FCE5E /* Game.swift in Sources */,
@@ -345,6 +349,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BC7B7FVK2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Campeoes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -374,6 +379,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BC7B7FVK2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Campeoes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
