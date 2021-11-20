@@ -9,10 +9,30 @@ import UIKit
 
 class WorldCupViewController: UIViewController {
 
+    @IBOutlet weak var ivWinner: UIImageView!
+    @IBOutlet weak var ivVice: UIImageView!
+    @IBOutlet weak var lbScore: UILabel!
+    @IBOutlet weak var lbWinner: UILabel!
+    @IBOutlet weak var lbVice: UILabel!
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    var worldCup: WorldCup?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let worldCup = worldCup {
+            title = "WorldCup \(worldCup.year)"
+            
+            ivWinner.image = UIImage(named: worldCup.winner)
+            ivVice.image = UIImage(named: worldCup.vice)
+            lbScore.text = "\(worldCup.winnerScore) x \(worldCup.viceScore)"
+            lbWinner.text = worldCup.winner
+            lbVice.text = worldCup.vice
+        }
     }
     
 
@@ -26,4 +46,33 @@ class WorldCupViewController: UIViewController {
     }
     */
 
+} // fim da classe
+
+
+extension WorldCupViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // total de secoes disponiveis
+        return worldCup?.matches.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // numero de linhas para a secao
+        return worldCup?.matches[section].games.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // desenhar a cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = "YYYY x ZZZZ"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // opcional: obter um nome para secao
+        return "Como pegar os titulos das secoes?"
+    }
+    
 }
