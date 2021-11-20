@@ -15,18 +15,7 @@ class WinnersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadWorldCups()
-    }
-    
-    func loadWorldCups() {
-        let fileURL = Bundle.main.url(forResource: "winners", withExtension: ".json")!
-        let jsonData = try! Data(contentsOf: fileURL)
-        
-        do {
-            worldCups = try JSONDecoder().decode([WorldCup].self, from: jsonData)
-        } catch  {
-            print(error.localizedDescription)
-        }
+        worldCups = WorldCup.loadWorldCups()
     }
     
 

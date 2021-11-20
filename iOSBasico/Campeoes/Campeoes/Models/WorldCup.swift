@@ -16,4 +16,18 @@ struct WorldCup: Codable {
     let winnerScore: String
     let viceScore: String
     let matches: [Match]
+    
+    static func loadWorldCups() -> [WorldCup] {
+        let fileURL = Bundle.main.url(forResource: "winners", withExtension: ".json")!
+        let jsonData = try! Data(contentsOf: fileURL)
+        
+        do {
+            return try JSONDecoder().decode([WorldCup].self, from: jsonData)
+            
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+        return []
+    }
 }
