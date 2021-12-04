@@ -25,9 +25,16 @@ class GamesTableTableViewController: UITableViewController {
         label.text = "Você não tem jogos cadastrados"
         label.textAlignment = .center
 
-        
         loadGames()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+                
+        // se ocorrer mudancas na entidade Console, a atualização automatica não irá ocorrer porque nosso NSFetchResultsController esta monitorando a entidade Game. Caso tiver mudanças na entidade Console precisamos atualizar a tela com a tabela de alguma forma: reloadData :)
+        tableView.reloadData()
+    }
+    
     
     func loadGames() {
         // Coredata criou na classe model uma funcao para recuperar o fetch request
@@ -81,17 +88,27 @@ class GamesTableTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+          
+            guard let game = fetchedResultController.fetchedObjects?[indexPath.row] else {
+                print("Nao foi possível obter o Game - verifique o seu banco de dados :(")
+                return
+            }
+            context.delete(game)
+            
+            do {
+                try context.save()
+            } catch  {
+                print(error.localizedDescription)
+            }
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            print("Insert test")
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -108,15 +125,18 @@ class GamesTableTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+                
+        if let vc = segue.destination as? GameViewController {
+            let game = fetchedResultController?.fetchedObjects?[tableView.indexPathForSelectedRow!.row]
+            vc.game = game
+        }
     }
-    */
+    
 
 } // fim da classe
 

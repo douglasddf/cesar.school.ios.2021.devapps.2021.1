@@ -61,7 +61,7 @@
                                     <outlet property="ivCover" destination="f0I-s3-Kth" id="rvF-TG-CYD"/>
                                     <outlet property="lbConsole" destination="XRp-gm-xpQ" id="kwz-aW-Yd1"/>
                                     <outlet property="lbTitle" destination="m2l-xz-WIM" id="4PE-qj-bf5"/>
-                                    <segue destination="lE8-Ho-DwH" kind="show" id="V38-gt-3bG"/>
+                                    <segue destination="lE8-Ho-DwH" kind="show" identifier="" id="V38-gt-3bG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -71,7 +71,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lista de Jogos" id="Wmk-ut-mLn">
-                        <barButtonItem key="backBarButtonItem" title=" " id="qUz-al-yKx"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zy0-zY-0NO">
                             <connections>
                                 <segue destination="5ZJ-Pi-LsB" kind="show" id="zV5-01-OtP"/>
@@ -240,7 +239,7 @@
             </objects>
             <point key="canvasLocation" x="3415.9420289855075" y="55.580357142857139"/>
         </scene>
-        <!--Titulo do game-->
+        <!--Game View Controller-->
         <scene sceneID="1KN-JR-MXN">
             <objects>
                 <viewController id="lE8-Ho-DwH" customClass="GameViewController" customModule="MyGames" customModuleProvider="target" sceneMemberID="viewController">
@@ -288,7 +287,13 @@
                             <constraint firstItem="x6H-Er-ZIz" firstAttribute="top" secondItem="8FB-UF-YqT" secondAttribute="bottom" constant="16" id="zQw-g3-qNB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Titulo do game" id="IsZ-Yv-f9W"/>
+                    <navigationItem key="navigationItem" id="IsZ-Yv-f9W">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="cqf-0e-ULG">
+                            <connections>
+                                <segue destination="5ZJ-Pi-LsB" kind="show" id="QCr-JJ-e9U"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ivCover" destination="x6H-Er-ZIz" id="I8h-1k-Jbb"/>
                         <outlet property="lbConsole" destination="ben-40-Nal" id="av2-bM-K7X"/>
@@ -373,6 +378,9 @@
             <point key="canvasLocation" x="402.89855072463769" y="354.91071428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QCr-JJ-e9U"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="console" width="23" height="23"/>
         <image name="game" width="23" height="23"/>

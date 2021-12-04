@@ -60,7 +60,7 @@ class AddEditViewController: UIViewController {
                 dpReleaseDate.date = releaseDate
             }
             if game?.cover != nil {
-                btCover.setTitle(nil, for: .normal)
+                btCover.setTitle("", for: .normal)
             }
         }
         
