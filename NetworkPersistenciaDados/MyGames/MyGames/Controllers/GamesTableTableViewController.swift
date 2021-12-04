@@ -17,6 +17,9 @@ class GamesTableTableViewController: UITableViewController {
     
     var label = UILabel()
     
+    // tip. podemos passar qual view vai gerenciar a busca. Neste caso a própria viewController (logo usei nil)
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +27,13 @@ class GamesTableTableViewController: UITableViewController {
         // mensagem default
         label.text = "Você não tem jogos cadastrados"
         label.textAlignment = .center
+        
+        navigationItem.searchController = searchController
+        
+        // usando extensions
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        
 
         loadGames()
     }
@@ -36,20 +46,24 @@ class GamesTableTableViewController: UITableViewController {
     }
     
     
-    func loadGames() {
-        // Coredata criou na classe model uma funcao para recuperar o fetch request
+    // valor default evita precisar ser obrigado a passar o argumento quando chamado
+    func loadGames(filtering: String = "") {
         let fetchRequest: NSFetchRequest<Game> = Game.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
-        // definindo criterio da ordenacao de como os dados serao entregues
-        let gameTitleSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        fetchRequest.sortDescriptors = [gameTitleSortDescriptor]
-        
+        if !filtering.isEmpty {
+            // usando predicate: conjunto de regras para pesquisas
+            // contains [c] = search insensitive (nao considera letras identicas)
+            let predicate = NSPredicate(format: "title contains [c] %@", filtering)
+            fetchRequest.predicate = predicate
+        }
+                
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultController.delegate = self
         
         do {
             try fetchedResultController.performFetch()
-        } catch {
+        } catch  {
             print(error.localizedDescription)
         }
     }
@@ -89,27 +103,36 @@ class GamesTableTableViewController: UITableViewController {
     */
 
     
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-          
-            guard let game = fetchedResultController.fetchedObjects?[indexPath.row] else {
-                print("Nao foi possível obter o Game - verifique o seu banco de dados :(")
-                return
-            }
-            context.delete(game)
+    // usando o código que ANderson fez em aula para ter mais opcoes nos gestos da tableview
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       
+        let deleteItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            guard let game = self.fetchedResultController.fetchedObjects?[indexPath.row] else {return}
+            self.context.delete(game)
             
             do {
-                try context.save()
+                try self.context.save()
+                tableView.deleteRows(at: [indexPath], with: .fade)
             } catch  {
                 print(error.localizedDescription)
             }
-        } else if editingStyle == .insert {
-            print("Insert test")
         }
+        
+        let inserItem = UIContextualAction(style: .normal, title: "Insert") { (UIContextualAction, view, boolValue) in
+            print("Inserindo algo")
+        }
+        
+        deleteItem.backgroundColor = .systemRed
+        inserItem.backgroundColor = .systemBlue
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteItem, inserItem])
+        
+        return swipeActions
     }
     
-
+    
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -142,20 +165,22 @@ class GamesTableTableViewController: UITableViewController {
 
 
 
-extension GamesTableTableViewController: NSFetchedResultsControllerDelegate {
-    
-    // sempre que algum objeto for modificado esse metodo sera notificado
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+
+
+extension GamesTableTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
         
-        switch type {
-            case .delete:
-                if let indexPath = indexPath {
-                        // Delete the row from the data source
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-                break
-            default:
-                tableView.reloadData()
-        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        loadGames()
+        tableView.reloadData()
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        loadGames(filtering: searchBar.text!)
+        tableView.reloadData()
     }
 }

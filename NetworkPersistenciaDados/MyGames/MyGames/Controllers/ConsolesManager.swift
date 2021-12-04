@@ -35,7 +35,7 @@ class ConsolesManager {
     }
     
     
-    func deleteConsole(index: Int, context: NSManagedObjectContext) {
+    func deleteConsole(index: Int, context: NSManagedObjectContext) -> Bool {
         
         let console = consoles[index]
         context.delete(console)
@@ -43,8 +43,10 @@ class ConsolesManager {
         do {
             try context.save()
             consoles.remove(at: index)
+            return true
         } catch  {
             print(error.localizedDescription)
+            return false
         }
     }
     
