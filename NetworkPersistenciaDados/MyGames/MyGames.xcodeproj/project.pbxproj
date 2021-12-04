@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED3B23C6275B9EDD00CFCEDD /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3B23C5275B9EDD00CFCEDD /* ViewController+CoreData.swift */; };
+		ED3B23C9275BA7A100CFCEDD /* ConsolesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3B23C8275BA7A100CFCEDD /* ConsolesManager.swift */; };
 		EDC9EF58275AD4AD0007BA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9EF57275AD4AD0007BA1E /* AppDelegate.swift */; };
 		EDC9EF5A275AD4AD0007BA1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9EF59275AD4AD0007BA1E /* SceneDelegate.swift */; };
 		EDC9EF5C275AD4AD0007BA1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9EF5B275AD4AD0007BA1E /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED3B23C5275B9EDD00CFCEDD /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
+		ED3B23C8275BA7A100CFCEDD /* ConsolesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolesManager.swift; sourceTree = "<group>"; };
 		EDC9EF54275AD4AD0007BA1E /* MyGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC9EF57275AD4AD0007BA1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDC9EF59275AD4AD0007BA1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED3B23C7275B9F5100CFCEDD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED3B23C5275B9EDD00CFCEDD /* ViewController+CoreData.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EDC9EF4B275AD4AD0007BA1E = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +89,7 @@
 				EDC9EF68275AD4B00007BA1E /* Info.plist */,
 				EDC9EF60275AD4AD0007BA1E /* MyGames.xcdatamodeld */,
 				EDC9EF72275AF3E70007BA1E /* Controllers */,
+				ED3B23C7275B9F5100CFCEDD /* Extensions */,
 			);
 			path = MyGames;
 			sourceTree = "<group>";
@@ -89,6 +102,7 @@
 				EDC9EF73275AF40E0007BA1E /* GameViewController.swift */,
 				EDC9EF75275AF4220007BA1E /* AddEditViewController.swift */,
 				EDC9EF77275B8BCB0007BA1E /* GameTableViewCell.swift */,
+				ED3B23C8275BA7A100CFCEDD /* ConsolesManager.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -172,7 +186,9 @@
 				EDC9EF76275AF4220007BA1E /* AddEditViewController.swift in Sources */,
 				EDC9EF71275AF3DA0007BA1E /* ConsolesTableViewController.swift in Sources */,
 				EDC9EF6F275AF3BE0007BA1E /* GamesTableTableViewController.swift in Sources */,
+				ED3B23C9275BA7A100CFCEDD /* ConsolesManager.swift in Sources */,
 				EDC9EF62275AD4AD0007BA1E /* MyGames.xcdatamodeld in Sources */,
+				ED3B23C6275B9EDD00CFCEDD /* ViewController+CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
