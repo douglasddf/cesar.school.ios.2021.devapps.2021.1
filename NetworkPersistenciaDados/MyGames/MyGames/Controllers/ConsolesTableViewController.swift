@@ -85,5 +85,14 @@ class ConsolesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Actions / Acoes
 
+    
+    @IBAction func addConsole(_ sender: Any) {
+        
+        print("Add Console")
+        
+    }
+    
 }
