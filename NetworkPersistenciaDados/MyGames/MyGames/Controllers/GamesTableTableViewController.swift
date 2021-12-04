@@ -58,8 +58,10 @@ class GamesTableTableViewController: UITableViewController {
             let predicate = NSPredicate(format: "title contains [c] %@", filtering)
             fetchRequest.predicate = predicate
         }
-                
+        
+        // possui
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController.delegate = self
         
         do {
             try fetchedResultController.performFetch()
@@ -165,7 +167,29 @@ class GamesTableTableViewController: UITableViewController {
 
 
 
-
+extension GamesTableTableViewController: NSFetchedResultsControllerDelegate {
+    
+    // sempre que algum objeto for modificado esse metodo sera notificado
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+            case .delete:
+                if let indexPath = indexPath {
+                    
+                    
+                    // optamos por nao colocar a animacao da delecao aqui porque caso usemos
+                    // o modo de Rule Delete em Cascade na tabela games -> para propagar as exclusoes,
+                    // entao esse metodo nao é uma boa opcao porque pode ocorrer crashes.
+                    
+                    print("nao chamando a animacao porque temos mais de uma exclusao \(indexPath)")
+                }
+                break
+            default:
+                print("--> atualiza apos inserir dados <--")
+                tableView.reloadData()
+        }
+    }
+}
 
 
 extension GamesTableTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
