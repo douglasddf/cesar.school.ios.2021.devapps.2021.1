@@ -43,23 +43,26 @@ class AddEditViewController: UIViewController {
         car.gasType = scGasType.selectedSegmentIndex
         
             // 1
-        REST.save(car: car) { savouComSucesso in
-            if savouComSucesso {
+        REST.save(car: car) { foiSalvoComSucesso in
+            if foiSalvoComSucesso {
+                // foi salvo
                 self.goBack()
             } else {
-                print("Deu algum erro no Save (adicionar um alerta no futuro)")
+                // nao foi salvo por algum motivo
+                print("-problemas ao salva -> mostrar um alerta para o usuario <-")
             }
         }
         
     }
     
-    // 2 - essa função pode fazer um Back na navegação da Navigation Control
     func goBack() {
         
         DispatchQueue.main.async {
+            // para garantir de executar esse código na main UI
             self.navigationController?.popViewController(animated: true)
         }
+        
     }
-
-
+    
+    
 }

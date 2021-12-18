@@ -90,32 +90,30 @@ class REST {
         
     }
     
-    
-    static func save(car: Car, onComplete: @escaping (Bool) -> Void ) {
+    static func save(car: Car, onComplete: @escaping (Bool) -> Void) {
             // 1
         guard let url = URL(string: basePath) else {
             onComplete(false)
             return
         }
         
+            
             // 2 - metodo POST precisa ser setado na URLRequest
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
+            
             // 3 - transformar Objeto para JSON para enviar na requisito
             // transformar objeto para um JSON, processo contrario do decoder -> Encoder
-        
-        
         guard let jsonData = try? JSONEncoder().encode(car) else {
             onComplete(false)
             return
         }
         request.httpBody = jsonData
-
         
-        // 4 - requisição propriamente dita como uma CLOSURE
-        session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            
+            // 4 - requisição propriamente dita como uma CLOSURE
+        let dataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+                
                 // 5 verifica resposta do servidor e retorna SUCESSO
             if error == nil {
                 
@@ -132,8 +130,8 @@ class REST {
                 onComplete(false)
             }
             
-            
-        }.resume()
-
+        }
+        dataTask.resume()
     }
+    
 }
