@@ -14,19 +14,28 @@ class CarsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadCars()
+    }
+
+    
+    func loadCars() {
         REST.loadCars { cars in
             
             self.cars = cars
             
-            // precisa recarregar a tableview usando a main UI thread
+                // precisa recarregar a tableview usando a main UI thread
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
             
         } onError: { error in
-            // se tiver erro
+                // se tiver erro
             
             
             var response: String = ""
@@ -40,20 +49,18 @@ class CarsTableViewController: UITableViewController {
                     response = "noResponse"
                 case .url:
                     response = "JSON inválido"
-                case .taskError(let error):                    
+                case .taskError(let error):
                     response = "\(error?.localizedDescription ?? "Erro genérico!")"
                 case .responseStatusCode(let code):
                     if code != 200 {
                         response = "Algum problema com o servidor. :( \nError:\(code)"
                     }
             }
-            // TODO utilizar um alerta para mostrar o erro
+                // TODO utilizar um alerta para mostrar o erro
             print(response)
         }
 
-        
     }
-
     
 
     // MARK: - Table view data source
