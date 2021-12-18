@@ -8,8 +8,9 @@
 
 import Foundation
 
-
-struct Car: Codable {
+// se manter como tipo class ao inves de struct nós podemos resolver o problema da tela de edicao ao voltar
+// para a tela de visualizacao com o objeto atualizado porque foi referenciado
+class Car: Codable {
     
     var _id: String?
     var brand: String = "" // marca

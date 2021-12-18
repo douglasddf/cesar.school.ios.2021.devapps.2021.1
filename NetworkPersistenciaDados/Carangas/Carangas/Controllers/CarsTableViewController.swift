@@ -15,7 +15,24 @@ class CarsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        label.text = "Carregando dados..."
+        
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(loadCars), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
     }
+    
+    
+    var label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "main")
+        label.numberOfLines = 0
+        return label
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,14 +41,16 @@ class CarsTableViewController: UITableViewController {
     }
 
     
-    func loadCars() {
+    @objc func loadCars() {
         REST.loadCars { cars in
             
             self.cars = cars
             
                 // precisa recarregar a tableview usando a main UI thread
             DispatchQueue.main.async {
+                
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
             
         } onError: { error in
@@ -58,6 +77,11 @@ class CarsTableViewController: UITableViewController {
             }
                 // TODO utilizar um alerta para mostrar o erro
             print(response)
+            
+            DispatchQueue.main.async {
+                self.label.text = "Algo deu errado! \n\n\(response)"
+                self.tableView.backgroundView = self.label
+            }
         }
 
     }
@@ -67,7 +91,17 @@ class CarsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return cars.count
+        let count = cars.count
+        
+        if count == 0 {
+            // mostrar mensagem padrao
+            self.tableView.backgroundView = self.label
+        } else {
+            self.label.text = ""
+            self.tableView.backgroundView = nil
+        }
+        
+        return count
     }
 
     
@@ -79,6 +113,7 @@ class CarsTableViewController: UITableViewController {
         // Configure the cell...
         cell.textLabel?.text = car.name
         cell.detailTextLabel?.text = car.brand
+        
 
         return cell
     }
@@ -92,17 +127,34 @@ class CarsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+            // 1
+            let car = cars[indexPath.row]
+            REST.delete(car: car) { (success) in
+                if success {
+                    
+                    // ATENCAO nao esquecer disso
+                    // removendo o objeto da estrutura
+                    self.cars.remove(at: indexPath.row)
+                    
+                    DispatchQueue.main.async {
+                            // Delete the row from the data source
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                    
+                    // PODE_SE chamar o loadCars() para nao precisar usar as linhas acima
+                    // o lado ruim de chamar o loadCars é que iremos fazer uma nova requisicao
+                    // para o servidor
+                }
+            }
+            
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -119,14 +171,18 @@ class CarsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let vc = segue.destination as? CarViewController {
+            let car = cars[tableView.indexPathForSelectedRow!.row]
+            vc.car = car
+        }
+        
     }
-    */
+    
 
 }
